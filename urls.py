@@ -1,0 +1,1 @@
+stellarburgers = 'https://stellarburgers.nomoreparties.site/'

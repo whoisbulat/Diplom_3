@@ -10,10 +10,6 @@ class MainPageHelper(BasePage):
     def click_on_profile_batton(self):
         self.click_to_element(MainPageLocators.LOCATOR_PROFILE_BATTON_ON_HEADER)
 
-    @allure.step('Переходим на страницу стеллар бургер. Главная страница')
-    def go_to_site(self):
-        return self.driver.get(self.base_url)
-
     @allure.step('Переходим на страницу ленты')
     def click_on_feed_batton(self):
         self.click_to_element(MainPageLocators.LOCATOR_FEED_BTN)
@@ -61,7 +57,14 @@ class MainPageHelper(BasePage):
         counter_element = self.find_element(MainPageLocators.LOCATOR_ACTIVE_COUNTER_ON_BUN)
         return counter_element.text
 
+
     @allure.step('Проверяем номер заказа в модалке')
     def check_order_number_on_modal(self):
-        element = self.find_element(MainPageLocators.LOCATOR_ORDER_NUMBER_ON_MODAL)
-        return element.text
+        locator = MainPageLocators.LOCATOR_ORDER_NUMBER_ON_MODAL
+        current_order = self.return_element_text(locator)
+        self.wait_element_(locator, current_order)
+        new_order = self.return_element_text(locator)
+        return new_order
+
+
+

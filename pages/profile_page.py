@@ -24,7 +24,7 @@ class ProfilePageHelper(BasePage):
     def order_history_displayed(self):
         return self.find_element(ProfilePageLocators.LOCATOR_LIST_ORDER_HISTORY).get_attribute("class")
 
-    @allure.step('провряем номер заказа')
+    @allure.step('проверяем номер заказа')
     def get_order_number(self):
         element = self.find_element(ProfilePageLocators.LOCATOR_ORDER_NUMBER_ON_HISTORY_ORDER)
         return element.text

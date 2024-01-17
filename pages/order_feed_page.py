@@ -35,7 +35,10 @@ class FeedOrderPageHelper(BasePage):
         element = self.find_element(FeedOrderPageLocators.LOCATOR_DAY_TIME_COUNTER)
         return element.text
 
+
     @allure.step('проверяем что после оформления заказа его номер появляется в разделе В работе')
-    def check_order_in_progress(self):
-        text = self.find_element(FeedOrderPageLocators.LOCATOR_ORDER_LIST_STATUS_IN_WORKING)
-        return text.text
+    def get_user_order_in_progress_(self, num):
+        locator = FeedOrderPageLocators.LOCATOR_ORDER_NUMBER_ON_ORDER_FEED
+        self.wait_element_text_to_be_present(locator, num)
+        return self.return_element_text(locator)
+
